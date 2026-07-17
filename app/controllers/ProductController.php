@@ -21,5 +21,16 @@ class ProductController {
             echo "<h1>Produk tidak ditemukan!</h1><a href='index.php?action=home'>Kembali ke Beranda</a>";
         }
     }
+
+    public function deleteProduct() {
+        $id = $_GET['id'] ?? null;
+        if ($id) {
+            $productModel = new ProductModel();
+            $productModel->deleteProduct($id);
+            // Setelah hapus, arahkan kembali ke daftar produk admin
+            header("Location: index.php?action=admin_products");
+            exit;
+        }
+    }
 }
 ?>

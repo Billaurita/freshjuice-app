@@ -97,7 +97,15 @@
                             <p class="fw-bold fs-5 mb-0 text-success" id="total-display">Rp <?= number_format($total_harga, 0, ',', '.') ?></p>
                         </div>
                         <input type="hidden" name="total" id="total-input" value="<?= $total_harga ?>">
-                        <button type="submit" class="btn btn-success w-100 mt-4 py-2 fw-bold">Lanjutkan Pembayaran</button>
+                        
+                        
+                        <?php if (empty($items) || $total_harga <= 0): ?>
+                            <button type="button" class="btn btn-secondary w-100 mt-4 py-2 fw-bold" disabled>Keranjang Masih Kosong</button>
+                        <?php else: ?>
+                            <button type="submit" class="btn btn-success w-100 mt-4 py-2 fw-bold">Lanjutkan Pembayaran</button>
+                        <?php endif; ?>
+                        
+
                     </div>
                 </div>
             </div>

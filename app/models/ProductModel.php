@@ -25,5 +25,10 @@ class ProductModel {
         $stmt->execute([$id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function deleteProductById($id) {
+        $stmt = $this->conn->prepare("DELETE FROM products WHERE id = ?");
+        return $stmt->execute([$id]);
+    }
 }
 ?>

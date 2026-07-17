@@ -19,11 +19,21 @@ class AuthController {
         }
     }
 
-    public function processRegister() {
-        if ((new UserModel())->registerUser($_POST)) {
-            header('Location: index.php?action=login&status=success');
-        }
+public function processRegister() {
+    $phone = $_POST['phone'] ?? '';
+    if (!preg_match('/^[0-9]+$/', $phone)) {
+        header('Location: index.php?action=register&error=telepon_tidak_valid');
+        exit(); 
     }
+
+    if ((new UserModel())->registerUser($_POST)) {
+        header('Location: index.php?action=login&status=success');
+        exit(); 
+    } else {
+        header('Location: index.php?action=register&error=gagal_simpan');
+        exit();
+    }
+}
 
     public function logout() {
     session_start(); 

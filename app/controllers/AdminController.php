@@ -82,6 +82,32 @@ class AdminController {
         require_once __DIR__ . '/../views/admin/product_edit.php';
     }
 
+    public function deleteProduct($id) {
+        if ($id) {
+            // Memanggil ProductModel
+            require_once __DIR__ . '/../models/ProductModel.php';
+            $productModel = new ProductModel();
+            
+            // Menjalankan fungsi hapus di model
+            $isDeleted = $productModel->deleteProductById($id);
+            
+            if ($isDeleted) {
+                echo "<script>
+                        alert('Produk berhasil dihapus!');
+                        window.location.href = 'index.php?action=admin_products';
+                    </script>";
+                exit;
+            }
+        }
+        
+        // Jika ID tidak ditemukan atau gagal hapus
+        echo "<script>
+                alert('Gagal menghapus produk.');
+                window.location.href = 'index.php?action=admin_products';
+            </script>";
+        exit;
+    }
+
     //proses data update
     public function updateProduct($id) {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {

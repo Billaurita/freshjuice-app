@@ -105,7 +105,7 @@
             <div class="col-md-6 z-1 text-center text-md-start">
                 <h1 class="hero-title mb-4">Nikmati Kesegaran<br><span>Setiap Hari</span></h1>
                 <p class="text-muted mb-4 fs-5">FreshJuice menghadirkan berbagai pilihan jus buah segar 100% natural.</p>
-                <button class="btn btn-belanja"><i class="fas fa-shopping-bag me-2"></i> Belanja Sekarang</button>
+                <a href="#produk" class="btn btn-belanja text-decoration-none d-inline-block"><i class="fas fa-shopping-bag me-2"></i> Belanja Sekarang</a>
             </div>
             <div class="col-md-6 text-center mt-5 mt-md-0">
                 <img src="public/images/hero-image.png" alt="Kumpulan Jus Segar" class="img-fluid" style="max-height: 320px; object-fit: contain;">

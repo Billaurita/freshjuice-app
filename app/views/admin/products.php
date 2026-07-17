@@ -129,7 +129,11 @@
                             <td class="fw-bold">Rp <?= number_format($p['price'], 0, ',', '.') ?></td>
                             <td>
                                 <a href="index.php?action=admin_product_edit&id=<?= $p['id'] ?>" class="btn btn-sm btn-light border">Edit</a>
-                                <button class="btn btn-sm btn-light border text-danger"><i class="fas fa-ellipsis-h"></i></button>
+                                <a href="index.php?action=admin_product_delete&id=<?= $p['id'] ?>" 
+                                    class="btn btn-sm btn-light border text-danger" 
+                                    onclick="return confirm('Yakin ingin menghapus produk ini?');">
+                                    <i class="fas fa-trash"></i>
+                                </a>
                             </td>
                         </tr>
                         <?php endforeach; ?>

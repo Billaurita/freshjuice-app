@@ -29,6 +29,7 @@ switch ($action) {
     case 'admin_product_store': (new AdminController())->storeProduct(); break;
     case 'admin_product_edit': $id = $_GET['id'] ?? null; (new AdminController())->editProduct($id); break;
     case 'admin_product_update': $id = $_GET['id'] ?? null; (new AdminController())->updateProduct($id); break;
+    case 'admin_product_delete': $id = $_GET['id'] ?? null; (new AdminController())->deleteProduct($id); break;
     case 'admin_records': (new AdminController())->records(); break;
     case 'admin_sales': (new AdminController())->sales(); break;
     default: echo "<h1>404 - Halaman Tidak Ditemukan</h1>"; break;

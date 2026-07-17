@@ -1,5 +1,4 @@
 <?php
-// Pastikan path ini benar sesuai struktur folder kamu
 require_once __DIR__ . '/../models/OrderModel.php';
 require_once __DIR__ . '/../models/CartModel.php';
 
@@ -11,11 +10,25 @@ class CheckoutController {
     }
 
     public function process() {
+        
+        $items = (new CartModel())->getCartByUserId($_SESSION['user_id']);
+        $total_belanja = $_POST['total'] ?? 0;
+
+        // --- Validasi ---
+        // Cek jika keranjang kosong atau total belanjanya Rp0
+        if (empty($items) || $total_belanja <= 0) {
+            echo "<script>
+                    alert('Checkout Gagal: Keranjang belanja kamu masih kosong atau totalnya Rp0!');
+                    window.location.href = 'index.php?action=cart';
+                  </script>";
+            exit;
+        }
+
+        
         $orderModel = new OrderModel();
         // Simpan data order
         $orderId = $orderModel->createOrder($_SESSION['user_id'], $_POST['total'], $_POST['city'], $_POST['shipping_service'], $_POST['payment_method'], $_POST['address']);
         
-        $items = (new CartModel())->getCartByUserId($_SESSION['user_id']);
         foreach ($items as $item) {
             $orderModel->createOrderItem($orderId, $item['name'], $item['quantity'], $item['price']);
         }
